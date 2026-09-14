@@ -12,10 +12,10 @@ public:
     virtual void useweapon() const = 0;
     virtual ~Weapon() = default;
 };
-class Bow: public Weapon{
+class Bow : public Weapon {
 public:
     Bow(int extradmg = 5, int cooldown = 5, int range = 10) : Weapon(extradmg, cooldown, range) {};
-    void useweapon() const override{
+    void useweapon() const override {
         cout << "Вистріл з лука, дистанція:" << range << ",додаткова шкода:" << extradmg;
     }
 };
@@ -33,13 +33,20 @@ public:
         cout << "Удар сокирою, дистанція:" << range << ",додаткова шкода:" << extradmg << ",перезарядка:" << cooldown;
     }
 };
+class Sword : public Weapon {
+public:
+    Sword(int extradmg = 11, int cooldown = 2, int range = 4) : Weapon(extradmg, cooldown, range) {};
+    void useweapon() const override {
+        cout << "Удар мечем, дистанція:" << range << ",додаткова шкода:" << extradmg << ",перезарядка:" << cooldown;
+    }
+};
 class Hero {
 protected:
     Weapon* weapon;
     int health;
     int damage;
 public:
-    Hero(Weapon* weapon,int health,int damage): weapon(weapon),health(health),damage(damage) {}
+    Hero(Weapon* weapon, int health, int damage) : weapon(weapon), health(health), damage(damage) {}
     void setWeapon(Weapon* wp) {
         weapon = wp;
         cout << "\nЗброю змінено\n";
@@ -50,29 +57,29 @@ public:
 class Mage : public Hero {
 public:
     Mage(Weapon* weapon, int health, int damage) : Hero(weapon, health, damage) {};
-    void usehero() const override{
-        cout << "Використано зброю:"; weapon->useweapon(); cout << ",здоров'я:" << health << ",шкода:" << damage;
+    void usehero() const override {
+        cout << "Використано зброю:"; weapon->useweapon(); cout /*<< ",здоров'я:" << health*/ << ",шкода:" << damage;
     }
 };
 class Knight : public Hero {
 public:
     Knight(Weapon* weapon, int health, int damage) : Hero(weapon, health, damage) {}
     void usehero() const override {
-        cout << "Використано зброю:"; weapon->useweapon(); cout << ",здоров'я:" << health << ",шкода:" << damage;
+        cout << "Використано зброю:"; weapon->useweapon(); cout /*<< ",здоров'я:" << health*/ << ",шкода:" << damage;
     }
 };
 class Shooter : public Hero {
 public:
     Shooter(Weapon* weapon, int health, int damage) : Hero(weapon, health, damage) {}
     void usehero() const override {
-        cout << "Використано зброю:"; weapon->useweapon(); cout << ",здоров'я:" << health << ",шкода:" << damage;
+        cout << "Використано зброю:"; weapon->useweapon(); cout /*<< ",здоров'я:" << health*/ << ",шкода:" << damage;
     }
 };
 class Fighter : public Hero {
 public:
     Fighter(Weapon* weapon, int health, int damage) : Hero(weapon, health, damage) {}
     void usehero() const override {
-        cout << "Використано зброю:"; weapon->useweapon(); cout << ",здоров'я:" << health << ",шкода:" << damage;
+        cout << "Використано зброю:"; weapon->useweapon(); cout /*<< ",здоров'я:" << health*/ << ",шкода:" << damage;
     }
 };
 
@@ -87,4 +94,3 @@ int main()
     h1.setWeapon(&num2);
     h1.usehero();
 }
-
